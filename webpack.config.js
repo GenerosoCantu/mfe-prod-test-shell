@@ -38,7 +38,15 @@ module.exports = (_, argv) => ({
       name: "consumer",
       filename: "remoteEntry.js",
       remotes: {
-        header: "header@https://prod-test-header.vercel.app/remoteEntry.js",
+        header: argv.mode === "development"
+          ? "header@http://localhost:8080/remoteEntry.js"
+          : "header@https://prod-test-header.vercel.app/remoteEntry.js",
+        footer: argv.mode === "development"
+          ? "footer@http://localhost:8080/remoteEntry.js"
+          : "footer@https://prod-test-header.vercel.app/remoteEntry.js",
+        menu: argv.mode === "development"
+          ? "menu@http://localhost:8080/remoteEntry.js"
+          : "menu@https://prod-test-header.vercel.app/remoteEntry.js",
       },
       exposes: {},
       shared: require("./package.json").dependencies,
