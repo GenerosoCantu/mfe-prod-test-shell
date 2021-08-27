@@ -10,7 +10,7 @@ const App = () => (
   <div>
     <Header />
     <Menu />
-    <div>I'm the consumer app</div>
+    <div>Page 1</div>
     <Footer />
   </div>
 );
