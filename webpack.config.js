@@ -5,8 +5,8 @@ module.exports = (_, argv) => ({
   output: {
     publicPath:
       argv.mode === "development"
-        ? "http://localhost:8081/"
-        : "https://mfe-prod-test-page1.vercel.app/",
+        ? "http://localhost:8080/"
+        : "https://mfe-prod-test-shell.vercel.app/",
   },
 
   resolve: {
@@ -14,7 +14,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 8081,
+    port: 8080,
   },
 
   module: {
@@ -35,18 +35,12 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "consumer",
+      name: "shell",
       filename: "remoteEntry.js",
       remotes: {
-        header: argv.mode === "development"
-          ? "header@http://localhost:8080/remoteEntry.js"
-          : "header@https://mfe-prod-test-shared.vercel.app/remoteEntry.js",
-        footer: argv.mode === "development"
-          ? "footer@http://localhost:8080/remoteEntry.js"
-          : "footer@https://mfe-prod-test-shared.vercel.app/remoteEntry.js",
-        menu: argv.mode === "development"
-          ? "menu@http://localhost:8080/remoteEntry.js"
-          : "menu@https://mfe-prod-test-shared.vercel.app/remoteEntry.js",
+        page1: argv.mode === "development"
+          ? "page1@http://localhost:8081/remoteEntry.js"
+          : "page1@https://mfe-prod-test-page1.vercel.app/remoteEntry.js",
       },
       exposes: {},
       shared: require("./package.json").dependencies,

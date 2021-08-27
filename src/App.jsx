@@ -2,16 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "./index.css";
-import Header from "header/Header";
-import Footer from "header/Footer";
-import Menu from "header/Menu";
+import Page1 from "page1/Page1";
 
 const App = () => (
   <div>
-    <Header />
-    <Menu />
-    <div>Page 1</div>
-    <Footer />
+    <Page1 />
   </div>
 );
 
